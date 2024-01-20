@@ -1,0 +1,201 @@
+@import url("https://fonts.googleapis.com/css2?family=Young+Serif&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap");
+
+:root {
+  --bg-dark: hsl(24, 5%, 18%);
+  --bg-brown: hsl(30, 10%, 34%);
+  --bg-pink: hsl(332, 51%, 32%);
+  --bg-rose: hsl(330, 100%, 98%);
+  --bg-nutmeg: hsl(14, 45%, 36%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: hsl(30, 54%, 90%);
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1,
+h2 {
+  font-family: "Young Serif", sans-serif;
+  font-weight: 400;
+}
+
+h3,
+p,
+table,
+ul,
+ol {
+  font-family: "Outfit", sans-serif;
+}
+
+.container {
+  margin: 5em 0;
+  width: 50%;
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 15px;
+  padding: 2.5em;
+}
+
+.container img {
+  width: 100%;
+  margin-bottom: 1.5em;
+  border-radius: 10px;
+}
+
+section p,
+section ul,
+ol {
+  color: var(--bg-brown);
+}
+
+section h2 {
+  font-size: 1.6em;
+  color: var(--bg-nutmeg);
+  margin-bottom: 0.8em;
+}
+
+#intro {
+  margin-bottom: 2em;
+}
+
+#intro h1 {
+  color: var(--bg-dark);
+  font-size: 2.5em;
+  margin-bottom: 0.2em;
+}
+
+#intro p {
+  margin-bottom: 1.5em;
+}
+
+#intro .prep {
+  padding: 2em;
+  background-color: var(--bg-rose);
+  border-radius: 12px;
+}
+
+.prep h3 {
+  color: var(--bg-pink);
+  margin-bottom: 0.8em;
+}
+
+section ul {
+  list-style-position: inside;
+}
+
+section ul b {
+  margin-left: 0.6em;
+}
+
+section ul li {
+  margin-top: 1em;
+}
+
+#intro .time-list .item::marker {
+  color: var(--bg-pink);
+}
+
+#ingredients .list {
+  margin-left: 5px;
+}
+
+#ingredients .list .item::marker {
+  color: var(--bg-nutmeg);
+}
+
+#ingredients .list .item span {
+  margin-left: 0.6em;
+}
+
+#instructions .list {
+  margin-left: 2em;
+}
+
+#instructions .list .item {
+  line-height: 1.5;
+  margin-top: 0.5em;
+}
+
+#instructions .list .item::marker {
+  font-family: "Outfit", sans-serif;
+  color: var(--bg-nutmeg);
+  font-weight: 700;
+  word-spacing: 0.7em;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  margin: 2em 0;
+  background-color: hsl(30, 18%, 87%);
+}
+
+#nutrition table {
+  margin-top: 1em;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#nutrition table tr {
+  padding: 2em 0;
+  border-bottom: 1px solid hsl(30, 18%, 87%);
+}
+
+td,
+th {
+  text-align: left;
+  padding: 0.8em;
+}
+
+#nutrition table tr:last-of-type {
+  border-bottom: none;
+}
+
+#nutrition table td {
+  padding-left: 2em;
+  color: var(--bg-brown);
+}
+
+#nutrition table th {
+  color: var(--bg-nutmeg);
+}
+
+@media (max-width: 1145px) {
+  .container {
+    width: 90%;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    margin: 0;
+    width: 100%;
+    border-radius: 0;
+    padding: 0;
+  }
+
+  .container img {
+    border-radius: 0;
+    margin-bottom: 0;
+  }
+
+  .wrapper {
+    padding: 2em;
+  }
+
+  #intro h1 {
+    line-height: 1;
+    margin-bottom: 0.5em;
+  }
+}
